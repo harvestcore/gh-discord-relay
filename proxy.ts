@@ -67,8 +67,8 @@ type EventHandler = (payload: GitHubPayload) => DiscordEmbed;
 const eventHandlers: Record<string, EventHandler> = {
     ping: payload => ({
         ...getBaseEmbed(payload),
-        title: '🏓 Webhook Configurado',
-        description: `El webhook para **${payload.repository?.full_name}** está funcionando.\n\nZen: *${payload.zen}*`,
+        title: '🏓 Webhook Configured',
+        description: `Webhook for **${payload.repository?.full_name}** is working.\n\nZen: *${payload.zen}*`,
         color: COLORS.green,
         url: payload.repository?.html_url,
     }),
@@ -805,7 +805,7 @@ function transformGitHubToDiscord(payload: GitHubPayload, eventType: string): Di
 
 async function sendToDiscord(payload: DiscordWebhookPayload): Promise<Response> {
     if (!DISCORD_WEBHOOK_URL) {
-        throw new Error('DISCORD_WEBHOOK_URL no está configurada');
+        throw new Error('DISCORD_WEBHOOK_URL is not set');
     }
 
     return await fetch(DISCORD_WEBHOOK_URL, {

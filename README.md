@@ -32,9 +32,9 @@ Build and run the image directly:
 
 ```bash
 docker build -t gh-discord-relay .
-docker run -d -p 6060:6060 \
+docker run -d -p 8080:8080 \
   -e DISCORD_WEBHOOK_URL=https://discord.com/api/webhooks/... \
-  -e PORT=6060 \
+  -e PORT=8080 \
   --name gh-discord-relay \
   gh-discord-relay
 ```
@@ -51,7 +51,7 @@ DISCORD_WEBHOOK_URL=https://discord.com/api/webhooks/...
 docker compose up -d
 ```
 
-The container uses port `6060` by default, runs with `restart: unless-stopped`, and reads the webhook URL from the `.env` file.
+The container uses port `8080` by default, runs with `restart: unless-stopped`, and reads the webhook URL from the `.env` file.
 
 ### Development
 

@@ -15,15 +15,28 @@ Supports **40+** GitHub event types including pushes, pull requests, issues, rel
 
 ### Environment variables
 
-| Variable | Description |
-|---|---|
+| Variable              | Description                         |
+| --------------------- | ----------------------------------- |
 | `DISCORD_WEBHOOK_URL` | Your Discord webhook URL (required) |
-| `PORT` | Server port (default: `8080`) |
+| `PORT`                | Server port (default: `8080`)       |
 
 ### Run locally
 
 ```bash
 DISCORD_WEBHOOK_URL=https://discord.com/api/webhooks/... deno run --allow-net --allow-env proxy.ts
+```
+
+### Run with Docker
+
+Build and run the image directly:
+
+```bash
+docker build -t gh-discord-relay .
+docker run -d -p 6060:6060 \
+  -e DISCORD_WEBHOOK_URL=https://discord.com/api/webhooks/... \
+  -e PORT=6060 \
+  --name gh-discord-relay \
+  gh-discord-relay
 ```
 
 ### Run with Docker Compose
@@ -37,6 +50,8 @@ DISCORD_WEBHOOK_URL=https://discord.com/api/webhooks/...
 ```bash
 docker compose up -d
 ```
+
+The container uses port `6060` by default, runs with `restart: unless-stopped`, and reads the webhook URL from the `.env` file.
 
 ### Development
 

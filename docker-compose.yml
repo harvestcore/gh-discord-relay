@@ -1,0 +1,10 @@
+services:
+  proxy:
+    build: .
+    container_name: github-discord-proxy
+    restart: unless-stopped
+    ports:
+      - "6060:6060"
+    environment:
+      - DISCORD_WEBHOOK_URL=${DISCORD_WEBHOOK_URL}
+      - PORT=6060
